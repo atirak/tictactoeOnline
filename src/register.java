@@ -23,6 +23,7 @@ public class register {
     private JPanel panelA4;
     private JTextField username;
     private JPasswordField pass;
+    private JPasswordField pass2;
     private static int avatar = 1;
     static MongoClientURI uri ;
     static MongoClient mongo ;
@@ -74,8 +75,7 @@ public class register {
         cancelButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                resetText();
-                setBGicon();
+                System.exit(0);
             }
         });
     }
@@ -107,8 +107,10 @@ public class register {
         if(dockUser!=null){
             JOptionPane.showMessageDialog(null, "username ซ้ำ");
 
-        }else if(name.getText().isEmpty()||pass.getText().isEmpty()||username.getText().isEmpty()) {
+        }else if(name.getText().isEmpty()||pass.getText().isEmpty()||username.getText().isEmpty()||pass2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "ใส่ข้อมูลให้ครบ");
+        }else if(!pass.getText().equals(pass2.getText())){
+            JOptionPane.showMessageDialog(null, "password ไม่ตรงกัน");
         }else{
             BasicDBObject add = new BasicDBObject();
             add.put("name", name.getText());
